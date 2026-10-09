@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#06263d">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <title>ZENIT RIEGO · Sistema de Riego Tecnificado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body class="login-body" id="app-root">
+
+<main class="login-shell" id="login-screen">
+    <section class="login-visual" aria-label="Plataforma de riego tecnificado">
+        <div class="login-brand"><span>ZENIT</span><small>RIEGO</small></div>
+        <div class="login-copy">
+            <span class="eyebrow light">RIEGO INTELIGENTE</span>
+            <h1>Tu parcela, regada en el momento justo.</h1>
+            <p>Supervisa la bomba, los sectores de riego y el clima de tu parcela de 10 hectáreas en Baja California desde cualquier dispositivo.</p>
+            <div class="login-feature-grid">
+                <article><i data-lucide="activity"></i><strong>Tiempo real</strong><span>Lecturas y alertas instantáneas</span></article>
+                <article><i data-lucide="shield-check"></i><strong>Acceso seguro</strong><span>Sesiones protegidas y auditables</span></article>
+            </div>
+        </div>
+        <div class="login-orb orb-one"></div><div class="login-orb orb-two"></div><div class="login-wave"></div>
+    </section>
+    <section class="login-panel">
+        <div class="login-form-wrap">
+            <div class="mobile-login-brand"><span>ZENIT</span><small>RIEGO</small></div>
+            <span class="eyebrow">BIENVENIDO</span>
+            <h2>Inicia sesión</h2>
+            <p class="login-lead">Ingresa a la plataforma de riego · Parcela Valle de San Quintín, Baja California.</p>
+            <div class="form-alert" id="login-alert" role="alert" hidden><i data-lucide="circle-alert"></i><span>Usuario o contraseña incorrectos.</span></div>
+            <form class="auth-form" id="login-form" autocomplete="on">
+                <label>Usuario<div class="field"><i data-lucide="user"></i><input name="username" value="admin" autocomplete="username" required></div></label>
+                <label>Contraseña<div class="field"><i data-lucide="lock-keyhole"></i><input id="login-password" type="password" name="password" value="admin" autocomplete="current-password" required><button class="field-action" type="button" data-toggle-password="login-password" aria-label="Mostrar contraseña"><i data-lucide="eye"></i></button></div></label>
+                <div class="login-options"><label class="check"><input type="checkbox" checked><span>Recordar sesión</span></label><span>Acceso administrativo</span></div>
+                <button class="primary-button login-submit" type="submit"><span>Ingresar a la plataforma</span><i data-lucide="arrow-right"></i></button>
+            </form>
+            <div class="demo-credentials"><i data-lucide="key-round"></i><div><strong>Credenciales iniciales</strong><span>Usuario: admin · Contraseña: admin</span></div></div>
+        </div>
+    </section>
+</main>
+
+<div class="app-shell" id="app-screen" hidden>
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><span>ZENIT</span><small>RIEGO</small></div>
+        <nav class="side-nav" aria-label="Navegación principal">
+            <button class="nav-item active" data-view-target="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+            <button class="nav-item" data-view-target="recipes"><i data-lucide="sprout"></i><span>Sectores</span><b>5</b></button>
+            <button class="nav-item" data-view-target="wifi"><i data-lucide="wifi"></i><span>WiFi</span></button>
+            <button class="nav-item" data-view-target="diagnostics"><i data-lucide="search-check"></i><span>Diagnóstico</span></button>
+            <button class="nav-item" data-view-target="help"><i data-lucide="circle-help"></i><span>Ayuda</span></button>
+            <button class="nav-item" data-view-target="logs"><i data-lucide="file-clock"></i><span>Logs</span></button>
+            <button class="nav-item" data-view-target="updates"><i data-lucide="refresh-cw"></i><span>Actualizar</span></button>
+            <button class="nav-item" data-view-target="profile"><i data-lucide="user-round"></i><span>Mi perfil</span></button>
+        </nav>
+        <div class="sidebar-tools">
+            <button class="tool-row" id="theme-toggle"><i data-lucide="moon"></i><span>Tema oscuro</span><span class="switch" aria-hidden="true"><i></i></span></button>
+            <div class="tool-row system-status" aria-label="Sistema en línea"><i data-lucide="radio-tower"></i><span>Sistema en línea</span><span class="status-dot" aria-hidden="true"></span></div>
+        </div>
+        <div class="sidebar-footer"><strong>ZENIT RIEGO</strong><span>Sistema de Riego Tecnificado</span><small>v1.0.0</small></div>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="workspace">
+        <header class="topbar">
+            <div class="topbar-title"><button class="icon-button menu-button" id="menu-button" aria-label="Abrir menú"><i data-lucide="menu"></i></button><i data-lucide="droplets"></i><span>SISTEMA DE RIEGO · PARCELA B.C.</span></div>
+            <div class="mobile-top-brand" aria-label="Zenit Riego"><strong>ZENIT</strong><small>RIEGO</small></div>
+            <div class="topbar-actions">
+                <button class="connection-pill" id="connection-pill"><i></i><span>Sin conexión</span><i data-lucide="chevron-down"></i></button>
+                <div class="clock-block"><small id="current-date"></small><strong id="current-time"></strong></div>
+                <button class="icon-button notification-button" aria-label="Notificaciones"><i data-lucide="bell"></i></button>
+                <button class="profile-button" data-view-target="profile" aria-label="Abrir perfil"><span id="profile-initial">A</span></button>
+            </div>
+        </header>
+
+        <main class="content" id="content">
+            <section class="app-view active" data-view="dashboard">
+                <div class="page-heading dashboard-heading">
+                    <div class="heading-icon"><i data-lucide="droplets"></i></div>
+                    <div><span class="eyebrow">SISTEMA DE RIEGO · 10 HECTÁREAS</span><h1>Estado de la parcela</h1><p>Valle de San Quintín, Baja California · lecturas y operación en tiempo real.</p></div>
+                    <div class="paused-pill live"><span></span><span id="live-pill-text">Sistema en línea</span><i data-lucide="activity"></i></div>
+                </div>
+                <div class="dashboard-grid">
+                    <article class="telemetry-card sky-card weather-card" data-animate-card>
+                        <div class="card-heading"><span class="card-icon"><i data-lucide="cloud-sun"></i></span><h2>Clima en la parcela · San Quintín, B.C.</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div>
+                        <div class="weather-body">
+                            <div class="weather-main"><i data-lucide="sun-medium"></i><strong id="weather-temp">24.0°C</strong><span id="weather-condition">Despejado</span></div>
+                            <div class="weather-stats">
+                                <article><i data-lucide="droplets"></i><div><strong id="weather-humidity">48%</strong><span>Humedad</span></div></article>
+                                <article><i data-lucide="wind"></i><div><strong id="weather-wind">14 km/h NO</strong><span>Viento</span></div></article>
+                                <article><i data-lucide="cloud-rain"></i><div><strong id="weather-rain">5%</strong><span>Prob. lluvia</span></div></article>
+                                <article><i data-lucide="sunrise"></i><div><strong id="weather-updated">—</strong><span>Actualizado</span></div></article>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="telemetry-card dark-card time-card" data-animate-card>
+                        <div class="card-heading"><span class="card-icon"><i data-lucide="clock-3"></i></span><h2>Riego acumulado hoy</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div>
+                        <strong class="process-time" id="process-time">02 hrs : 30 min</strong>
+                        <div class="offline-strip live"><i></i><span id="process-state">0 sectores en riego ahora</span><i data-lucide="activity"></i></div>
+                        <div class="wave-lines"></div>
+                    </article>
+                    <article class="telemetry-card level-card blue-card" data-animate-card>
+                        <div class="cistern-water" id="cistern-water" aria-hidden="true"><span></span><i></i></div>
+                        <div class="card-heading"><span class="card-icon"><i data-lucide="waves"></i></span><h2>Nivel de la cisterna</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div>
+                        <div class="level-main"><div class="pump-status-copy"><small>NIVEL DE AGUA</small><strong id="cistern-level">72%</strong></div><span class="pump-machine" id="pump-machine" aria-label="Bombas en reposo"><i data-lucide="fan"></i><b></b></span></div>
+                        <div class="level-controls">
+                            <label class="pump-toggle-row" for="cistern-valve-toggle"><span><i data-lucide="faucet"></i>Válvula principal <small id="cistern-valve-state">NO</small></span><input id="cistern-valve-toggle" type="checkbox" aria-label="Activar válvula principal"><span class="control-switch" aria-hidden="true"></span></label>
+                        </div>
+                        <div class="cistern-footer">
+                            <div class="cistern-track"><div class="cistern-fill" id="cistern-fill" style="width:72%"></div></div>
+                            <div class="cistern-summary"><i data-lucide="droplets"></i><span id="pump-summary">0 de 5 bombas activas</span></div>
+                        </div>
+                    </article>
+                    <article class="telemetry-card dark-card control-card" data-animate-card>
+                        <div class="card-heading"><span class="card-icon"><i data-lucide="settings"></i></span><h2>Bombas del sistema</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div>
+                        <div class="pump-overview" id="pump-overview"></div>
+                        <button class="secondary-button pump-overview-link" data-view-target="recipes"><i data-lucide="sprout"></i>Ir a sectores</button>
+                        <div class="wave-lines"></div>
+                    </article>
+                    <article class="telemetry-card metric-card green-card pressure-card" data-animate-card><div class="card-heading"><i data-lucide="gauge"></i><h2>Presión de línea</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div><strong id="pressure-value">0.0 PSI</strong><p>Meta: 1.8 PSI</p><i class="metric-art" data-lucide="gauge"></i></article>
+                    <article class="telemetry-card metric-card aqua-card ph-card" data-animate-card><div class="card-heading"><i data-lucide="sprout"></i><h2>Humedad del suelo</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div><strong id="ph-value">62%</strong><p>Meta: 60–75%</p><i class="metric-art" data-lucide="sprout"></i></article>
+                    <article class="telemetry-card wide-metric mint-card mass-card" data-animate-card><div class="card-heading"><i data-lucide="thermometer"></i><h2>Temperatura ambiente</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div><strong id="mass-temp">25.9°C</strong><i class="metric-art" data-lucide="sun"></i></article>
+                    <article class="telemetry-card wide-metric peach-card leach-card" data-animate-card><div class="card-heading"><i data-lucide="droplets"></i><h2>Caudal de riego</h2><button class="ghost-button"><i data-lucide="ellipsis"></i></button></div><strong id="leach-temp">25.5 L/min</strong><p>Meta: 20.0 L/min</p><i class="metric-art" data-lucide="waves"></i></article>
+                </div>
+            </section>
+
+            <section class="app-view" data-view="recipes">
+                <div class="page-heading"><div><span class="eyebrow">CONFIGURACIÓN DE RIEGO</span><h1>Sectores de riego</h1><p>Organiza e inicia el riego por sectores de la parcela de 10 hectáreas.</p></div><button class="primary-button" id="new-recipe"><i data-lucide="plus"></i>Nuevo sector</button></div>
+                <div class="stats-row"><article><i data-lucide="sprout"></i><div><strong>5</strong><span>Sectores activos</span></div></article><article><i data-lucide="land-plot"></i><div><strong>10 ha</strong><span>Superficie total · 2 ha por sector</span></div></article><article><i data-lucide="circle-check-big"></i><div><strong>92%</strong><span>Eficiencia de riego</span></div></article></div>
+                <div class="recipe-grid" id="recipe-grid">
+                    <article class="recipe-card" data-sector="1" data-sector-crop="Hortalizas" data-sector-pump="Bomba 1" data-sector-encargado="Carlos Mendoza"><div class="recipe-top"><span class="recipe-icon green"><i data-lucide="leaf"></i></span><span class="status-badge sector-status" data-sector-status>En espera</span></div><h3>Sector 1 · Hortalizas</h3><p>Riego por goteo · 2 ha · Encargado: Carlos Mendoza</p><dl><div><dt>Caudal</dt><dd>20 L/min</dd></div><div><dt>Humedad meta</dt><dd>70%</dd></div><div><dt>Bomba</dt><dd>Bomba 1</dd></div><div><dt>Último riego</dt><dd data-sector-last>Sin registros</dd></div></dl><div class="sector-duration"><label>Duración del riego<select data-sector-duration><option value="15">15 min</option><option value="30">30 min</option><option value="45" selected>45 min</option><option value="60">60 min</option><option value="90">90 min</option></select></label></div><div class="sector-progress" data-sector-progress hidden><div class="sector-progress-track"><div class="sector-progress-fill" data-sector-fill></div></div><span data-sector-remaining>45:00</span></div><button class="secondary-button sector-start" data-sector-action="start"><i data-lucide="play"></i>Iniciar riego</button><button class="secondary-button danger sector-stop" data-sector-action="stop" hidden><i data-lucide="square"></i>Detener riego</button></article>
+                    <article class="recipe-card" data-sector="2" data-sector-crop="Cítricos" data-sector-pump="Bomba 2" data-sector-encargado="Ana Torres"><div class="recipe-top"><span class="recipe-icon blue"><i data-lucide="droplets"></i></span><span class="status-badge sector-status" data-sector-status>En espera</span></div><h3>Sector 2 · Cítricos</h3><p>Microaspersión · 2 ha · Encargada: Ana Torres</p><dl><div><dt>Caudal</dt><dd>28 L/min</dd></div><div><dt>Humedad meta</dt><dd>65%</dd></div><div><dt>Bomba</dt><dd>Bomba 2</dd></div><div><dt>Último riego</dt><dd data-sector-last>Sin registros</dd></div></dl><div class="sector-duration"><label>Duración del riego<select data-sector-duration><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option><option value="60" selected>60 min</option><option value="90">90 min</option></select></label></div><div class="sector-progress" data-sector-progress hidden><div class="sector-progress-track"><div class="sector-progress-fill" data-sector-fill></div></div><span data-sector-remaining>60:00</span></div><button class="secondary-button sector-start" data-sector-action="start"><i data-lucide="play"></i>Iniciar riego</button><button class="secondary-button danger sector-stop" data-sector-action="stop" hidden><i data-lucide="square"></i>Detener riego</button></article>
+                    <article class="recipe-card" data-sector="3" data-sector-crop="Fresas" data-sector-pump="Bomba 3" data-sector-encargado="Luis Ramírez"><div class="recipe-top"><span class="recipe-icon amber"><i data-lucide="sun-medium"></i></span><span class="status-badge sector-status" data-sector-status>En espera</span></div><h3>Sector 3 · Fresas</h3><p>Riego por goteo de alta frecuencia · 2 ha · Encargado: Luis Ramírez</p><dl><div><dt>Caudal</dt><dd>18 L/min</dd></div><div><dt>Humedad meta</dt><dd>75%</dd></div><div><dt>Bomba</dt><dd>Bomba 3</dd></div><div><dt>Último riego</dt><dd data-sector-last>Sin registros</dd></div></dl><div class="sector-duration"><label>Duración del riego<select data-sector-duration><option value="15">15 min</option><option value="30" selected>30 min</option><option value="45">45 min</option><option value="60">60 min</option><option value="90">90 min</option></select></label></div><div class="sector-progress" data-sector-progress hidden><div class="sector-progress-track"><div class="sector-progress-fill" data-sector-fill></div></div><span data-sector-remaining>30:00</span></div><button class="secondary-button sector-start" data-sector-action="start"><i data-lucide="play"></i>Iniciar riego</button><button class="secondary-button danger sector-stop" data-sector-action="stop" hidden><i data-lucide="square"></i>Detener riego</button></article>
+                    <article class="recipe-card" data-sector="4" data-sector-crop="Vid" data-sector-pump="Bomba 4" data-sector-encargado="María García"><div class="recipe-top"><span class="recipe-icon violet"><i data-lucide="sparkles"></i></span><span class="status-badge sector-status" data-sector-status>En espera</span></div><h3>Sector 4 · Vid</h3><p>Perfil nocturno · 2 ha · Encargada: María García</p><dl><div><dt>Caudal</dt><dd>22 L/min</dd></div><div><dt>Humedad meta</dt><dd>60%</dd></div><div><dt>Bomba</dt><dd>Bomba 4</dd></div><div><dt>Último riego</dt><dd data-sector-last>Sin registros</dd></div></dl><div class="sector-duration"><label>Duración del riego<select data-sector-duration><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option><option value="50" selected>50 min</option><option value="60">60 min</option></select></label></div><div class="sector-progress" data-sector-progress hidden><div class="sector-progress-track"><div class="sector-progress-fill" data-sector-fill></div></div><span data-sector-remaining>50:00</span></div><button class="secondary-button sector-start" data-sector-action="start"><i data-lucide="play"></i>Iniciar riego</button><button class="secondary-button danger sector-stop" data-sector-action="stop" hidden><i data-lucide="square"></i>Detener riego</button></article>
+                    <article class="recipe-card" data-sector="5" data-sector-crop="Invernadero" data-sector-pump="Bomba 5" data-sector-encargado="Jorge Pérez"><div class="recipe-top"><span class="recipe-icon green"><i data-lucide="home"></i></span><span class="status-badge sector-status" data-sector-status>En espera</span></div><h3>Sector 5 · Invernadero</h3><p>Riego por goteo controlado · 2 ha · Encargado: Jorge Pérez</p><dl><div><dt>Caudal</dt><dd>15 L/min</dd></div><div><dt>Humedad meta</dt><dd>72%</dd></div><div><dt>Bomba</dt><dd>Bomba 5</dd></div><div><dt>Último riego</dt><dd data-sector-last>Sin registros</dd></div></dl><div class="sector-duration"><label>Duración del riego<select data-sector-duration><option value="15">15 min</option><option value="25" selected>25 min</option><option value="30">30 min</option><option value="45">45 min</option></select></label></div><div class="sector-progress" data-sector-progress hidden><div class="sector-progress-track"><div class="sector-progress-fill" data-sector-fill></div></div><span data-sector-remaining>25:00</span></div><button class="secondary-button sector-start" data-sector-action="start"><i data-lucide="play"></i>Iniciar riego</button><button class="secondary-button danger sector-stop" data-sector-action="stop" hidden><i data-lucide="square"></i>Detener riego</button></article>
+                </div>
+            </section>
+
+            <section class="app-view" data-view="wifi">
+                <div class="page-heading"><div><span class="eyebrow">CONECTIVIDAD</span><h1>Configuración WiFi</h1><p>Administra la red que conecta el controlador de riego con la plataforma.</p></div><button class="primary-button" id="scan-networks"><i data-lucide="radar"></i>Buscar redes</button></div>
+                <div class="network-layout"><article class="network-status"><div class="status-illustration"><i data-lucide="wifi-off"></i></div><span class="status-badge warning">Sin conexión</span><h3>Controlador desconectado</h3><p>Selecciona una red disponible e ingresa sus credenciales.</p><dl><div><dt>Dirección IP</dt><dd>—</dd></div><div><dt>MAC</dt><dd>3A:7F:20:8C:11:04</dd></div><div><dt>Firmware</dt><dd>1.0.0</dd></div></dl></article><div class="networks-card"><div class="section-title"><div><h3>Redes disponibles</h3><p>Señal detectada cerca del controlador</p></div><span id="scan-state">Último escaneo: ahora</span></div><div class="network-list" id="network-list"><button class="network active"><i data-lucide="wifi"></i><span><strong>RIEGO_PARCELA</strong><small>WPA2 · Excelente</small></span><b>-42 dBm</b><i data-lucide="chevron-right"></i></button><button class="network"><i data-lucide="wifi"></i><span><strong>Rancho_5G</strong><small>WPA2 · Buena</small></span><b>-61 dBm</b><i data-lucide="chevron-right"></i></button><button class="network"><i data-lucide="wifi"></i><span><strong>Invitados</strong><small>Abierta · Regular</small></span><b>-73 dBm</b><i data-lucide="chevron-right"></i></button></div><form id="wifi-form" class="inline-form"><label>Contraseña de la red<input type="password" placeholder="Escribe la contraseña" required></label><button class="primary-button" type="submit"><i data-lucide="link"></i>Conectar</button></form></div></div>
+            </section>
+
+            <section class="app-view" data-view="diagnostics">
+                <div class="page-heading"><div><span class="eyebrow">SALUD DEL SISTEMA</span><h1>Diagnóstico</h1><p>Comprueba sensores, bomba, válvulas y conectividad.</p></div><button class="primary-button" id="run-diagnostics"><i data-lucide="stethoscope"></i>Ejecutar diagnóstico</button></div>
+                <div class="health-banner"><span class="health-ring">94<small>%</small></span><div><span class="status-badge success">Sistema saludable</span><h3>Todos los componentes críticos responden</h3><p>La conectividad permanece pendiente hasta conectar el controlador a una red WiFi.</p></div></div>
+                <div class="diagnostic-grid" id="diagnostic-grid"><article data-check><span><i data-lucide="sprout"></i></span><div><h3>Sensores de humedad</h3><p>Lecturas consistentes en ambos canales.</p></div><b class="check-status success"><i data-lucide="circle-check"></i>Correcto</b></article><article data-check><span><i data-lucide="gauge"></i></span><div><h3>Sensor de presión</h3><p>Calibración vigente y respuesta normal.</p></div><b class="check-status success"><i data-lucide="circle-check"></i>Correcto</b></article><article data-check class="pump-diagnostic"><span><i data-lucide="droplets"></i></span><div><h3>Bombas de riego</h3><p>Las 5 bombas de sector responden con normalidad.</p><div class="pump-amp-list" id="pump-amp-list"></div></div><b class="check-status success"><i data-lucide="circle-check"></i>Correcto</b></article><article data-check><span><i data-lucide="wifi"></i></span><div><h3>Conectividad WiFi</h3><p>No hay una red configurada.</p></div><b class="check-status warning"><i data-lucide="triangle-alert"></i>Atención</b></article></div>
+            </section>
+
+            <section class="app-view" data-view="help">
+                <div class="page-heading"><div><span class="eyebrow">CENTRO DE AYUDA</span><h1>¿Cómo podemos ayudarte?</h1><p>Encuentra respuestas rápidas y guías de operación.</p></div></div>
+                <div class="help-search"><i data-lucide="search"></i><input id="help-search" placeholder="Buscar en la ayuda…"></div>
+                <div class="help-layout"><div class="help-topics"><article><i data-lucide="rocket"></i><h3>Primeros pasos</h3><p>Configura tu primer sector y conecta el controlador.</p></article><article><i data-lucide="sliders-horizontal"></i><h3>Operación</h3><p>Controla la bomba, niveles y parámetros objetivo.</p></article><article><i data-lucide="shield-alert"></i><h3>Alertas</h3><p>Interpreta avisos y resuelve incidencias.</p></article></div><div class="faq-card"><h3>Preguntas frecuentes</h3><div id="faq-list"><button class="faq"><span>¿Cómo inicio un riego?</span><i data-lucide="chevron-down"></i><p>Entra a Sectores, elige la duración y presiona Iniciar riego. La bomba del sector se activa y el temporizador corre en tiempo real hasta terminar.</p></button><button class="faq"><span>¿Puedo detener un riego antes de tiempo?</span><i data-lucide="chevron-down"></i><p>Sí. En la tarjeta del sector activo aparece el botón Detener riego, que apaga la bomba de inmediato y registra la duración real aplicada.</p></button><button class="faq"><span>¿Cómo cambio la contraseña?</span><i data-lucide="chevron-down"></i><p>Abre Mi perfil, escribe tu contraseña actual y define una nueva de al menos seis caracteres.</p></button></div></div></div>
+            </section>
+
+            <section class="app-view" data-view="logs">
+                <div class="page-heading"><div><span class="eyebrow">TRAZABILIDAD</span><h1>Registro de eventos</h1><p>Consulta acciones, alertas y cambios del sistema.</p><span class="live-indicator" id="logs-live"><i></i><b>Actualizando en vivo</b></span></div><button class="secondary-button" id="export-logs"><i data-lucide="download"></i>Exportar CSV</button></div>
+                <div class="table-card"><div class="table-toolbar"><div class="help-search compact"><i data-lucide="search"></i><input id="log-search" placeholder="Filtrar eventos…"></div><select id="log-filter"><option value="all">Todos los tipos</option><option value="Proceso">Proceso</option><option value="Sistema">Sistema</option><option value="Seguridad">Seguridad</option></select></div><div class="table-scroll"><table><thead><tr><th>Fecha y hora</th><th>Evento</th><th>Tipo</th><th>Usuario</th><th>Estado</th></tr></thead><tbody id="log-table"><tr><td>Hoy · 06:24:36</td><td>Plataforma iniciada</td><td>_<span>Sistema</span></td><td>admin</td><td><b class="status-badge success">Completado</b></td></tr><tr><td>Hoy · 06:20:08</td><td>Riego detenido</td><td>_<span>Proceso</span></td><td>admin</td><td><b class="status-badge">Informativo</b></td></tr><tr><td>Ayer · 18:42:19</td><td>Contraseña actualizada</td><td>_<span>Seguridad</span></td><td>admin</td><td><b class="status-badge success">Completado</b></td></tr><tr><td>Ayer · 17:05:41</td><td>Conexión WiFi perdida</td><td>_<span>Sistema</span></td><td>Sistema</td><td><b class="status-badge warning">Advertencia</b></td></tr></tbody></table></div></div>
+            </section>
+
+            <section class="app-view" data-view="updates">
+                <div class="update-hero"><span><i data-lucide="badge-check"></i></span><div><small>VERSIÓN INSTALADA</small><h2>ZENIT RIEGO 1.0.0</h2><p>La plataforma está actualizada y protegida.</p></div><button class="primary-button" id="check-updates"><i data-lucide="refresh-cw"></i>Buscar actualizaciones</button></div>
+                <div class="release-grid"><article><i data-lucide="sparkles"></i><h3>Interfaz responsive</h3><p>Nueva navegación móvil, modo oscuro y tarjetas adaptables.</p></article><article><i data-lucide="timer"></i><h3>Ciclos automáticos</h3><p>Activaciones programadas de bombas con registro de amperaje y presión.</p></article><article><i data-lucide="shield-check"></i><h3>Seguridad</h3><p>Sesiones reforzadas y contraseñas cifradas.</p></article></div>
+            </section>
+
+            <section class="app-view" data-view="profile">
+                <div class="page-heading"><div><span class="eyebrow">CUENTA Y SEGURIDAD</span><h1>Mi perfil</h1><p>Actualiza tu información y protege el acceso administrativo.</p></div></div>
+                <div class="profile-layout"><aside class="profile-summary"><div class="profile-avatar" id="profile-avatar">A</div><h2 id="profile-summary-name">Administrador</h2><p>Administrador</p><span class="status-badge success"><i data-lucide="shield-check"></i>Perfil local</span><dl><div><dt>Usuario</dt><dd>admin</dd></div><div><dt>Último acceso</dt><dd>Hoy</dd></div><div><dt>Rol</dt><dd>Administrador</dd></div></dl><a href="#" id="logout-link" class="danger-link"><i data-lucide="log-out"></i>Cerrar sesión</a></aside><form class="profile-form" id="profile-form"><div class="form-section"><h3>Información personal</h3><p>Este nombre se mostrará en la plataforma.</p><label>Nombre visible<input name="display_name" value="Administrador" maxlength="60" required></label></div><div class="form-section"><h3>Cambiar contraseña local</h3><p>La contraseña se guarda solamente en este navegador.</p><label>Contraseña actual<div class="field"><i data-lucide="lock-keyhole"></i><input name="current_password" type="password" autocomplete="current-password"></div></label><div class="form-columns"><label>Nueva contraseña<div class="field"><i data-lucide="key-round"></i><input name="new_password" type="password" minlength="6" autocomplete="new-password"></div></label><label>Confirmar contraseña<div class="field"><i data-lucide="check"></i><input name="confirm_password" type="password" minlength="6" autocomplete="new-password"></div></label></div></div><button class="primary-button" type="submit"><i data-lucide="save"></i>Guardar cambios</button></form></div>
+            </section>
+        </main>
+
+        <nav class="mobile-nav" aria-label="Navegación móvil"><button class="active" data-view-target="dashboard"><i data-lucide="house"></i><span>Dashboard</span></button><button data-view-target="recipes"><i data-lucide="sprout"></i><span>Sectores</span></button><button data-view-target="logs"><i data-lucide="file-clock"></i><span>Logs</span></button><button data-view-target="diagnostics"><i data-lucide="search"></i><span>Diagnóstico</span></button><button id="more-button"><i data-lucide="ellipsis"></i><span>Más</span></button></nav>
+    </div>
+</div>
+
+<div class="more-sheet" id="more-sheet" aria-hidden="true"><button data-view-target="wifi"><i data-lucide="wifi"></i>WiFi</button><button data-view-target="help"><i data-lucide="circle-help"></i>Ayuda</button><button data-view-target="updates"><i data-lucide="refresh-cw"></i>Actualizar</button><button data-view-target="profile"><i data-lucide="user-round"></i>Mi perfil</button></div>
+<div class="modal" id="recipe-modal" aria-hidden="true"><div class="modal-card"><button class="modal-close" data-close-modal><i data-lucide="x"></i></button><span class="eyebrow">NUEVO SECTOR · 2 HECTÁREAS</span><h2>Configura un sector de riego</h2><form id="recipe-form"><label>Nombre del sector / cultivo<input name="name" placeholder="Ej. Sector 6 · Nogales" required></label><label>Encargado responsable<input name="encargado" placeholder="Ej. Pedro Sánchez" required></label><div class="form-columns"><label>Duración (minutos)<input name="duration" type="number" value="40" min="1" required></label><label>Caudal objetivo (L/min)<input name="temperature" type="number" value="20" step="0.1" required></label></div><label>Humedad objetivo (%)<input name="ph" type="number" value="68" step="1" min="0" max="100" required></label><button class="primary-button" type="submit"><i data-lucide="save"></i>Guardar sector</button></form></div></div>
+<div class="toast-region" id="toast-region" aria-live="polite"></div>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
